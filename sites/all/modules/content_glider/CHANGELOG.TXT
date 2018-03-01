@@ -1,0 +1,27 @@
+6.x-1.0: First version of Content Glider (CG) for Drupal 6
+         No conflict with Drupal collapse feature
+         Able to set how many content to be glide
+6.x-1.1: Fixed: width change to 95% to avoid overlapping in the layout
+6.x-1.2: New: Link uses Drupal path rather than node/nid 
+         Fixed: Check if DB result empty
+6.x-1.3: Fixed: do not display empty teaser
+6.x-1.4: Fixed: Block Title use $glider_id and 
+         New: Add instruction to README.TXT
+         Fixed: show better error message when no content exists
+6.x-1.5: Fixed: set background white to transparent, remove width 95% and 100%
+         Fixed: disable javascript alert when content not available
+         Fixed: hide underline for link
+				 
+6.x-1.6: Fixed: avoid jQuery called twice
+         Fixed: error when edit Views while CG active
+				 New: enable/disable link to original node
+				 New: set delay between slideshow
+				 New: set slideshow repeat
+
+6.x-1.7: New: support multi content-type in a block
+         New: order by
+				 Fixed: add 'width:90%' to .glidecontent for better layout
+         
+6.x-1.8: New: option to use node teaser or body as content text
+         Fixed: Avoid unclosed HTML TABLE and DIV
+         

@@ -1,0 +1,12 @@
+name = "Content Glider"
+description = "Display node in Slide show mode using jQuery."
+core = 6.x
+version = "6.x-1.8"
+package = "Easy Module"
+project = "content_glider"
+; Information added by drupal.org packaging script on 2011-06-04
+version = "6.x-1.8"
+core = "6.x"
+project = "content_glider"
+datestamp = "1307152615"
+

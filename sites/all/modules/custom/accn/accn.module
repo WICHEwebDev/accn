@@ -1,0 +1,28 @@
+<?php
+// $Id: accn.module,v 1.1 2011/03/15 19:07:07 rdahiya Exp $
+//no closing php marker because we have no output
+
+
+/**
+* Implementation of hook_form_alter
+*/
+function accn_form_event_node_form_alter(&$form, $form_state) {
+	$form['buttons']['submit']['#submit'][] = 'accn_form_submit';
+}
+
+/**
+* Implementation of hook_form_alter
+*/
+function accn_form_project_node_form_alter(&$form, $form_state) {
+	//dsm($form);
+    $form['buttons']['submit']['#submit'][] = 'accn_form_submit';
+    $form['body_field']['body']['#description'] = t('Please provide a brief (200 Chars.) summary that describes your project&#39;s overall mission.');
+}
+
+/**
+* Custom submit handler. Overrides the form redirection variable.
+*/
+function accn_form_submit($form, &$form_state) {
+  $form_state['redirect'] = 'thankyou';
+}
+

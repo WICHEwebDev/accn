@@ -1,0 +1,299 @@
+<?php
+
+/**
+ * @file
+ * Display content and image in Slide show mode using jQuery.
+ */
+
+/**
+ * Implementation of hook_help().
+ */
+function content_glider_help($section) {
+  switch ($section) {
+    case 'admin/help#content_glider':
+      $output = "The content_glider module: Display content and image in Slide show mode using jQuery.";
+	return $output;
+    case 'admin/modules#description':
+      return 'The content_glider module: Display content and image in Slide show mode using jQuery.';
+  }
+}
+
+/**
+ * Implementation of hook_perm
+ */
+function content_glider_perm() {
+  return array('access content_glider', 'administer content_glider');
+}
+
+/*
+$items['admin/settings/counter'] = array(
+    'title' => 'Counter settings',
+    'description' => 'Show Site Counter, Client IP, and Unique Visitor.',
+    'access arguments' => array('administer counter'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('counter_admin_settings'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'counter.settings.inc',
+  );
+*/
+  
+function content_glider_menu() {
+
+  $items = array();
+  
+  $items['admin/settings/content_glider'] = array(
+      'title' => 'Content Glider',
+      'description' => t('Setting Content Glider.'),
+      'access arguments' => array('administer content_glider'),
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('content_glider_admin_settings'),
+      'type' => MENU_NORMAL_ITEM);
+  
+  return $items;
+}
+
+function content_glider_admin_settings() {
+	
+	$form['content_glider_source'] = array(
+    '#type' => 'fieldset',
+    '#weight' => -30,
+    '#title' => t('Slideshow source'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+		'#description' => t("Use coma to separate source, e.g.: page,story")
+  );
+	$form['content_glider_source']['content_glider_source_1'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Content type for Glider 1'),
+	  '#default_value' => variable_get('content_glider_source_1', 'page'),
+	);
+	$form['content_glider_source']['content_glider_source_2'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Content type for Glider 2'),
+	  '#default_value' => variable_get('content_glider_source_2', ''),
+	);	  
+	$form['content_glider_source']['content_glider_source_3'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Content type for Glider 3'),
+	  '#default_value' => variable_get('content_glider_source_3', ''),
+	);	
+	
+  $form['content_glider_settings'] = array(
+    '#type' => 'fieldset',
+    '#weight' => -20,
+    '#title' => t('Basic settings'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE
+  );
+  $form['content_glider_settings']['content_glider_auto'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Auto rotate slideshow'),
+	  '#default_value' => variable_get('content_glider_auto', 1),
+    '#description' => t("Display content without mouse click."),           
+    '#maxlength' => '1', '#size' => '1');
+  
+	$form['content_glider_settings']['content_glider_speed'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Slideshow speed (in milliseconds)'),
+	  '#default_value' => variable_get('content_glider_speed', 1000),
+	);
+	$form['content_glider_settings']['content_glider_delay'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Delay between slideshow (in milliseconds)'),
+	  '#default_value' => variable_get('content_glider_delay', 3000),
+	);
+	$form['content_glider_settings']['content_glider_repeat'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Repeat slideshow (0=Continuos)'),
+	  '#default_value' => variable_get('content_glider_repeat', 0),
+	);
+	$form['content_glider_settings']['content_glider_direction'] = array(
+    '#type' => 'select',
+    '#title' => t('Set direction of slideshow'),
+	  '#default_value' => variable_get('content_glider_direction', 3),
+	  '#options' => array('up to down', 'down to up', 'left to right', 'right to left'),
+	  '#description' => 'Select the animation direction'
+	);
+	$form['content_glider_settings']['content_glider_count'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Number of contents to glide/slide'),
+	  '#default_value' => variable_get('content_glider_count', 5),
+	);
+	
+	$form['content_glider_advanced'] = array(
+    '#type' => 'fieldset',
+    '#weight' => -10,
+    '#title' => t('Advanced settings'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE
+  );
+  $form['content_glider_advanced']['content_glider_teaser'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Use teaser for Glider content'),
+	  '#default_value' => variable_get('content_glider_teaser', 0),
+    '#description' => t("Use node teaser instead body for Glider content. <b>Caution:</b> Drupal automatically break paragraph for teaser and may cause HTML TABLE not break properly. Content Glider (CG) try to detect unclosed TABLE tag and avoid this as CG content. Set this option to FALSE if Content Glider break your website."));
+  $form['content_glider_advanced']['content_glider_link'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Link teaser to full node'),
+	  '#default_value' => variable_get('content_glider_link', 0),
+    '#description' => t("Open full node (body) when user click on slideshow. This setting only useful when you select 'Use teaser for Glider content = True'"));
+	$form['content_glider_advanced']['content_glider_order_type'] = array(
+    '#type' => 'select',
+    '#title' => t('Order Type'),
+	  '#default_value' => variable_get('content_glider_order_type',1),
+	  '#options' => array('ASC', 'DESC')
+	);
+		  	  
+  return system_settings_form($form);
+}
+
+/**
+ * Implementation of hook_block().
+ *
+ */
+function content_glider_block($op = 'list', $delta = 0) {
+  $content_glider_auto  = variable_get("content_glider_auto", 1);  
+  $content_glider_speed = variable_get("content_glider_speed", 1000); 
+	$content_glider_delay = variable_get("content_glider_delay", 1000);
+	$content_glider_repeat = variable_get("content_glider_repeat", 1000);
+	 
+  $content_glider_count = variable_get("content_glider_count", 5);
+  
+  $content_glider_direction = variable_get("content_glider_direction", 3); 
+  
+  if ($content_glider_direction==0) { $content_glider_direction_value = 'updown'; }
+  if ($content_glider_direction==1) { $content_glider_direction_value = 'downup'; }
+  if ($content_glider_direction==2) { $content_glider_direction_value = 'leftright'; }
+  if ($content_glider_direction==3) { $content_glider_direction_value = 'rightleft'; }
+  
+  $content_glider_source_1  = variable_get("content_glider_source_1", "page");
+  $content_glider_source_2  = variable_get("content_glider_source_2", "");
+  $content_glider_source_3  = variable_get("content_glider_source_3", "");
+	
+	$content_glider_teaser    = variable_get("content_glider_teaser", 0);
+  $content_glider_link      = variable_get("content_glider_link", 1);
+	$content_glider_order_type= variable_get("content_glider_order_type",1);
+	$content_glider_order_type_val= $content_glider_order_type ? "DESC" : "ASC";
+		
+  global $base_url;    
+	$ajax_base_path = $base_url;
+	
+  if ($op == 'list') 
+  {
+    $blocks[0]['info'] = 'Content Glider 1';
+    $blocks[0]['cache'] = BLOCK_NO_CACHE;
+    $blocks[1]['info'] = 'Content Glider 2';
+    $blocks[1]['cache'] = BLOCK_NO_CACHE;
+    $blocks[2]['info'] = 'Content Glider 3';
+    $blocks[2]['cache'] = BLOCK_NO_CACHE;
+	return $blocks;
+  }
+  
+  if ($op == 'view') {
+     
+    switch($delta) {
+    	case 0: $content_type = $content_glider_source_1; break;
+    	case 1: $content_type = $content_glider_source_2; break;
+    	case 2: $content_type = $content_glider_source_3; break;
+   	}
+		$content_type_arr = explode(",", $content_type);
+		
+		$content_type_str = '';
+		foreach($content_type_arr as $data) {
+		  $data = trim($data);
+	    if ($data) {
+		    if ($content_type_str=='') { $content_type_str .= "'$data'";}
+		    else { $content_type_str .= ", '$data'";}
+			}		
+		}
+		
+    $sql = " SELECT nid FROM {node} n "
+	        ." WHERE n.status=1 AND n.type IN ($content_type_str) "
+					." ORDER BY n.created %s LIMIT %d";
+    $results = db_query($sql, $content_glider_order_type_val, $content_glider_count);
+  
+    if (!db_result($results)) {
+      return;
+		}
+		
+		drupal_add_css(drupal_get_path('module', 'content_glider') . '/featuredcontentglider.css');
+    drupal_add_js(drupal_get_path('module', 'content_glider'). '/featuredcontentglider.js', 'module');
+    //drupal_add_js(drupal_get_path('module', 'content_glider'). '/jquery-1.2.2.pack.js', 'module');
+    //Text	
+		$output_head  =''."\n";	
+		$output_head .= '/***********************************************'."\n";
+		$output_head .= '* Featured Content Glider script- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)'."\n";
+		$output_head .= '* Visit http://www.dynamicDrive.com for hundreds of DHTML scripts'."\n";
+		$output_head .= '* This notice must stay intact for legal use'."\n";
+		$output_head .= '***********************************************/'."\n";
+		drupal_add_js($output_head,'inline');	
+	
+		$glider_id = $delta+1;    
+      
+		  $output_body  =  '';
+			$output_body .=  '<script type="text/javascript">'."\n";
+
+			$output_body .=  'featuredcontentglider.init({'."\n";
+			$output_body .=  'gliderid: "Glider'.$glider_id.'", //ID of main glider container'."\n";
+			$output_body .=  'contentclass: "glidecontent", //Shared CSS class name of each glider content'."\n";
+			$output_body .=  'togglerid: "p-select", //ID of toggler container'."\n";
+			$output_body .=  'remotecontent: "", //Get gliding contents from external file on server? "filename" or "" to disable'."\n";
+			$output_body .=  'selected: 0, //Default selected content index (0=1st)'."\n";
+			$output_body .=  'persiststate: false, //Remember last content shown within browser session (true/false)?'."\n";
+			$output_body .=  'speed: '.$content_glider_speed.', //Glide animation duration (in milliseconds)'."\n";
+			$output_body .=  'direction: "'.$content_glider_direction_value.'", //set direction of glide: "updown", "downup", "leftright", or "rightleft"'."\n";
+			if ($content_glider_auto) { $auto="true"; } else { $auto="false"; }
+			$output_body .=  'autorotate: '.$auto.', //Auto rotate contents (true/false)?'."\n";
+			$output_body .=  'autorotateconfig: ['.$content_glider_delay.', '.$content_glider_repeat.'] //if auto rotate enabled, set [milliseconds_btw_rotations, cycles_before_stopping]'."\n";
+			$output_body .=  '})'."\n";
+
+			$output_body .=  '</script>';
+		  
+			$output_body .=  '<div id="Glider'.$glider_id.'" class="glidecontentwrapper">';
+						
+			$results = db_query($sql, $content_glider_order_type_val, $content_glider_count);
+      
+      while ($data = db_fetch_object($results)) {
+        $node_glider = node_load($data->nid);
+        
+        if ($node_glider->teaser != '') {
+          $glider_nid = $node_glider->nid;
+          
+          $content_glider_text = ($content_glider_teaser) ? $node_glider->teaser : $node_glider->body;
+          
+          if ((strpos($content_glider_text, '<table') && !strpos($content_glider_text, '</table'))
+          ||  (strpos($content_glider_text, '<div')   && !strpos($content_glider_text, '</div'  ))) {
+            $content_glider_text = '';
+          }
+          
+          if ($content_glider_text <> '') {
+            $output_body .= '<div class="glidecontent">';
+					  if ($content_glider_link) {
+					    $output_body .= '<a href="' . url("node/$glider_nid") . '">'. $content_glider_text .'</a>';	
+					  } else {
+					    $output_body .= $content_glider_text;
+					  }
+			      $output_body .= '</div>';  
+          }
+          
+			  }
+      }
+			$output_body .= '</div>';
+
+			$output_body .=  '<div id="p-select" class="glidecontenttoggler">';
+			$output_body .=  '<a href="#" class="prev">Prev</a>';
+			$output_body .=  '<a href="#" class="toc">1</a> <a href="#" class="toc">2</a> <a href="#" class="toc">3</a>';
+			$output_body .=  '<a href="#" class="toc">4</a> <a href="#" class="toc">5</a> ';
+			$output_body .=  '<a href="#" class="next">Next</a>';
+			$output_body .=  '</div>';
+			  
+		  $block['subject'] = "Content Glider $glider_id"; 
+      $block['content'] = $output_body;  
+				
+     
+    return $block;
+  }
+}
+
+
+?>

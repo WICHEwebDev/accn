@@ -1,0 +1,10 @@
+<?php
+// $Id: sharethis_widget.install,v 1.1 2011/03/15 19:06:54 rdahiya Exp $
+
+function sharethis_widget_install() {
+  
+}
+
+function sharethis_widget_uninstall() {
+  
+}

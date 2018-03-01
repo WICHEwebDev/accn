@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://adcn.wiche.edu/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>http://adcn.wiche.edu/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+<url><loc>http://adcn.wiche.edu/content/welcome</loc><lastmod>2010-11-24T18:02Z</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+<url><loc>http://adcn.wiche.edu/content/projects</loc><lastmod>2010-11-12T18:07Z</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>http://adcn.wiche.edu/content/newsroom</loc><lastmod>2010-11-12T18:08Z</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>http://adcn.wiche.edu/content/presentations</loc><lastmod>2010-11-12T18:08Z</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>http://adcn.wiche.edu/content/blogs</loc><lastmod>2010-11-12T18:08Z</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>http://adcn.wiche.edu/content/about-us-0</loc><lastmod>2010-11-12T18:08Z</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>http://adcn.wiche.edu/explore</loc><lastmod>2010-11-23T22:57Z</lastmod><changefreq>daily</changefreq></url>
+<url><loc>http://adcn.wiche.edu/expand</loc><lastmod>2010-11-23T23:13Z</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>http://adcn.wiche.edu/engage</loc><lastmod>2010-11-24T00:59Z</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>http://adcn.wiche.edu/test</loc><lastmod>2010-11-17T23:21Z</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>http://adcn.wiche.edu/content/newsfeed</loc><lastmod>2010-11-22T17:47Z</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>http://adcn.wiche.edu/sampleProfile</loc><lastmod>2010-11-24T01:00Z</lastmod><changefreq>daily</changefreq></url>
+<url><loc>http://adcn.wiche.edu/content/aboutWicheLumina</loc><lastmod>2010-11-24T18:00Z</lastmod><changefreq>hourly</changefreq></url>
+</urlset>

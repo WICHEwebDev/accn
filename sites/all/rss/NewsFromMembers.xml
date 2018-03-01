@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<rss version="2.0">
+	<channel>
+	<title>WCET - News From Members</title>
+	<link>http://www.wcet.info/2.0/sites/all/rss/NewsFromMembers.xml</link>
+	<description>If you post to the Forum Member News, the information from that RSS Feed goes into here. Last Updated On: Wed, 14 Jul 2010 08:40:13 MDT</description>
+	<lastBuildDate>Wed, 14 Jul 2010 08:40:13 MDT</lastBuildDate>
+	<language>en</language>
+	<cloud domain="www.wcet.info" port="80" path="/RPC" registerProcedure="NotifyMe" protocol="xml-rpc" />
+	</channel>
+</rss>

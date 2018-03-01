@@ -1,0 +1,5 @@
+; $Id: accn.info,v 1.1 2011/03/15 19:07:07 rdahiya Exp $
+name = accn
+description = A module that customizes the behavior of the accn site
+core = 6.x
+package = Custom Modules

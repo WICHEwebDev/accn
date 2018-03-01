@@ -1,0 +1,24 @@
+/* $Id: tabs-rtl.css,v 1.1 2011/03/15 19:05:06 rdahiya Exp $ */
+
+/**
+ * @file
+ * RTL companion for the tabs.css file.
+ */
+
+
+ul.primary {
+  padding: 0 10px 0 0;
+}
+
+ul.primary li {
+  float: right;
+}
+
+ul.secondary {
+  padding: 0 5px 0 0;
+}
+
+ul.secondary li {
+  float: right;
+  border-left: none;
+}
