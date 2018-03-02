@@ -90,16 +90,20 @@
  *   $db_url = 'pgsql://username:password@localhost/databasename';
  */
 
-/*
- * mysqli - php 
-	$db_url = 'mysqli://drupalsys:.wiche.drupal1@dbase2:3307/lxaccn';
 
-$db_url = 'mysqli://drupalPub:deborahpeggy@mysql_priv:3306/draccn';*
- */
+#$db_url = 'mysql://AMAZEEIO_DB_USERNAME:AMAZEEIO_DB_PASSWORD@127.0.0.1:3306/AMAZEEIO_SITE_NAME';
 
-$db_url = 'mysql://drupalUser:drupaLP@33@127.0.0.1:3306/draccn';
+$db_user = getenv("AMAZEEIO_DB_USERNAME");
+$db_pass = getenv("AMAZEEIO_DB_PASSWORD");
+$db_host = getenv("127.0.0.1");
+$db_port = getenv("3306");
+$db_database = getenv("AMAZEEIO_SITE_NAME");
+
+$db_url = "mysql://$db_user:$db_pass@$db_host:$db_port/$db_database";
+
 
 $db_prefix = '';
+
 
 /**
  * Access control for update.php script
@@ -134,7 +138,7 @@ $update_free_access = FALSE;
 # $base_url = 'http://www.example.com';  // NO trailing slash!
 
 //$base_url = 'http://adultcollegecompletion.org';
-$base_url = 'accn.wiche.edu';
+#$base_url = 'accn.wiche.edu';
 
 /**
  * PHP settings:
@@ -178,7 +182,7 @@ ini_set('url_rewriter.tags',        '');
  * shared base domain. Doing so assures that users remain logged in as they
  * cross between your various domains.
  */
-$cookie_domain = '.adultcollegecompletion.org';
+//$cookie_domain = '.adultcollegecompletion.org';
 
 /**
  * Variable overrides:
@@ -250,19 +254,3 @@ $cookie_domain = '.adultcollegecompletion.org';
 #   '@count min' => '@count minutes',
 # );
 
-if(getenv('AMAZEEIO_SITENAME')) {
-  $databases['default']['default'] = array(
-    'driver' => 'mysql',
-    'database' => getenv('AMAZEEIO_SITENAME'),
-    'username' => getenv('AMAZEEIO_DB_USERNAME'),
-    'password' => getenv('AMAZEEIO_DB_PASSWORD'),
-    'host' => getenv('AMAZEEIO_DB_HOST'),
-    'port' => getenv('AMAZEEIO_DB_PORT'),
-    'prefix' => '',
-  );
-}
-
-### amazee.io Base URL
-if (getenv('AMAZEEIO_BASE_URL')) {
-  $base_url = getenv('AMAZEEIO_BASE_URL');
-}
