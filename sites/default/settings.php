@@ -95,8 +95,8 @@
 
 $db_user = getenv("AMAZEEIO_DB_USERNAME");
 $db_pass = getenv("AMAZEEIO_DB_PASSWORD");
-$db_host = getenv("127.0.0.1");
-$db_port = getenv("3306");
+$db_host = getenv("AMAZEEIO_DB_HOST");
+$db_port = getenv("AMAZEEIO_DB_PORT");
 $db_database = getenv("AMAZEEIO_SITE_NAME");
 
 $db_url = "mysql://$db_user:$db_pass@$db_host:$db_port/$db_database";
