@@ -1,4 +1,4 @@
-sitegroup: accn
+sitegroup: accn_wiche_edu
 
 deploy_tasks:
   development:
