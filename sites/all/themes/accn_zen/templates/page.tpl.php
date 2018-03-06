@@ -155,7 +155,7 @@
            <!-- /#name-and-slogan -->
       <?php endif; ?>
       <div class="join-button">
-          <a href="/content/join-network"><img src="/sites/images/site/joinButton.png" alt="Join the network"  /></a>
+          <div style="height:40px;">&nbsp;</div><!--<a href="/content/join-network"><img src="/sites/images/site/joinButton.png" alt="Join the network"  /></a>-->
         </div>
 
 
