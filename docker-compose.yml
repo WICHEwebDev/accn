@@ -30,6 +30,7 @@ services:
     image: amazeeio/drupal:php56-basic
     volumes:
       - .:/var/www/drupal/public_html:delegated
+      - ./.amazeeio/nginx:/etc/nginx/sites-enabled
     volumes_from:
       - container:amazeeio-ssh-agent
     container_name: *hostname
