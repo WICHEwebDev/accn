@@ -1,9 +1,25 @@
 # Ignore configuration files that may contain sensitive information.
-#sites/*/settings*.php
+sites/*/settings*.php
 *.sql
+*.swf
+*.pdf
+*.png
+*.mp3
+*.jpg
+*.htaccess
+.htaccess
 
 # Ignore paths that contain user-generated content.
-sites/*/files
-sites/*/private
-
+sites/files/
+sites/docs/
+sites/documents/
+sites/flash/
+sites/images/
+sites/u4/
+sites/u90/
+sites/u91/
+sites/u94/
+sites/videos/
+sites/all/rss/
+sites/CVS/
 
