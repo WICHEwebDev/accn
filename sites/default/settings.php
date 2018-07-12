@@ -18,37 +18,14 @@
  */
 
  ### Lagoon Database connection
- if(getenv('LAGOON')){
-   $mariadb_port = preg_replace('/.*:(\d{2,5})$/', '$1', getenv('MARIADB_PORT') ?: '3306'); // Kubernetes/OpenShift sets `*_PORT` by default as tcp://172.30.221.159:8983, extract the port from it
-   $databases['default']['default'] = array(
-     'driver' => 'mysql',
-     'database' => getenv('MARIADB_DATABASE') ?: 'drupal',
-     'username' => getenv('MARIADB_USERNAME') ?: 'drupal',
-     'password' => getenv('MARIADB_PASSWORD') ?: 'drupal',
-     'host' => getenv('MARIADB_HOST') ?: 'mariadb',
-     'port' => $mariadb_port,
-     'prefix' => '',
-   );
- }
+ $mariadb_port = preg_replace('/.*:(\d{2,5})$/', '$1', getenv('MARIADB_PORT') ?: '3306'); // Kubernetes/OpenShift sets `*_PORT` by default as tcp://172.30.221.159:8983, extract the port from it
+ $db_url = sprintf("mysqli://%s:%s@%s:%s/%s", 
+    getenv('MARIADB_USERNAME') ?: 'drupal', 
+    getenv('MARIADB_PASSWORD') ?: 'drupal',
+    getenv('MARIADB_HOST') ?: 'mariadb',
+    $mariadb_port,
+    getenv('MARIADB_DATABASE') ?: 'drupal');
 
- ### Lagoon Solr connection
- // WARNING: you have to create a search_api server having "solr" machine name at
- // /admin/config/search/search-api/add-server to make this work.
- if(getenv('LAGOON')){
-  // Override search API server settings fetched from default configuration.
-  $conf['search_api_override_mode'] = 'load';
-  $conf['search_api_override_servers']['solr']['name'] = 'Lagoon Solr - Environment:' . getenv('LAGOON_PROJECT');
-  $conf['search_api_override_servers']['solr']['options']['host'] = getenv('SOLR_HOST') ?: 'solr';
-  $conf['search_api_override_servers']['solr']['options']['port'] = 8983;
-  $conf['search_api_override_servers']['solr']['options']['path'] = '/solr/' . getenv('SOLR_CORE') ?: 'drupal';
-  $conf['search_api_override_servers']['solr']['options']['http_user'] = (getenv('SOLR_USER') ?: '');
-  $conf['search_api_override_servers']['solr']['options']['http_pass'] = (getenv('SOLR_PASSWORD') ?: '');
-  $conf['search_api_override_servers']['solr']['options']['excerpt'] = 0;
-  $conf['search_api_override_servers']['solr']['options']['retrieve_data'] = 0;
-  $conf['search_api_override_servers']['solr']['options']['highlight_data'] = 0;
-  $conf['search_api_override_servers']['solr']['options']['http_method'] = 'POST';
-
-}
 
 ### Lagoon Varnish & reverse proxy settings
 if (getenv('LAGOON')) {
