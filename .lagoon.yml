@@ -21,7 +21,9 @@ cronjobs:
     service: cli
 
 environments:
-  prod:
+  master:
     routes:
       - varnish:
-        - "accn.wiche.edu" 
+        - "accn.wiche.edu":
+            tls-acme: 'true'
+            insecure: Redirect
