@@ -24,7 +24,7 @@ environments:
   prod:
     routes:
       - varnish:
-        - "accn.wiche.edu"
+        - "accn.wiche.edu":
            tls-acme: 'true'
            insecure: Redirect
         - "adultcollegecompletion.org":
