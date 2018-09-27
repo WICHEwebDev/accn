@@ -141,7 +141,7 @@ p.emphasize {
 }
 
 .view-frontpage ul li {
-	background-image:url(http://www.adultcollegecompletion.org/sites/images/site/frontpage-caption.png);
+	background-image:url(/sites/images/site/frontpage-caption.png);
 	background-repeat: no-repeat;
 	background-position: top center;
 	border: 1px #CCC solid;
