@@ -7,7 +7,7 @@ cronjobs:
     service: cli
 
 environments:
-  prod:
+  master:
     routes:
       - varnish:
         - "accn.wiche.edu":
