@@ -12,10 +12,10 @@
 $conf['error_level'] = 0;
 
 // Anonymous caching enabled
-$conf['cache'] = 1;
+$conf['cache'] = 0;
 
 // Block caching enabled
-$conf['block_cache'] = 1;
+$conf['block_cache'] = 0;
 
 // Expiration of cached pages on Varnish to 15 min
 $conf['page_cache_maximum_age'] = 900;
