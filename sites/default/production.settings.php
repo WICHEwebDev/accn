@@ -21,10 +21,10 @@ $conf['block_cache'] = 1;
 $conf['page_cache_maximum_age'] = 900;
 
 // Aggregate and compress CSS files on
-$conf['preprocess_css'] = 1;
+$conf['preprocess_css'] = 0;
 
 // Aggregate JavaScript files on
-$conf['preprocess_js'] = 1;
+$conf['preprocess_js'] = 0;
 
 // Disabling stage_file_proxy on production, with that the module can be enabled even on production
 $conf['stage_file_proxy_origin'] = false;
