@@ -39,8 +39,6 @@ if (getenv('LAGOON')) {
   $conf['varnish_control_key'] = getenv('VARNISH_SECRET') ?: 'lagoon_default_secret';
   $conf['varnish_version'] = 4;
 
-  $cookie_domain = '.wiche.edu';
-
 }
 
 ### Base URL
