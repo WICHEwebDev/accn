@@ -38,6 +38,7 @@ if (getenv('LAGOON')) {
   $conf['varnish_control_terminal'] = implode($varnish_hosts, " ");
   $conf['varnish_control_key'] = getenv('VARNISH_SECRET') ?: 'lagoon_default_secret';
   $conf['varnish_version'] = 4;
+
 }
 
 ### Base URL
