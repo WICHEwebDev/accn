@@ -11,8 +11,30 @@ environments:
     routes:
       - varnish:
         - "accn.wiche.edu":
-           tls-acme: 'true'
-           insecure: Redirect
+            tls-acme: 'true'
+            insecure: Redirect
         - "adultcollegecompletion.org":
-           tls-acme: 'true'
-           insecure: Redirect        
+            tls-acme: 'true'
+            insecure: Redirect        
+        - "www.accn.wiche.edu":
+            tls-acme: 'true'
+            insecure: Redirect
+        - "adultcollegecompletion.com":
+            tls-acme: 'true'
+            insecure: Redirect
+        - "www.adultcollegecompletion.com":
+            tls-acme: 'true'
+            insecure: Redirect
+        - "adultcollegecompletion.net":
+            tls-acme: 'true'
+            insecure: Redirect
+        - "www.adultcollegecompletion.net":
+            tls-acme: 'true'
+            insecure: Redirect
+        - "adultcollegecompletion.org":
+            tls-acme: 'true'
+            insecure: Redirect
+        - "www.adultcollegecompletion.org":
+            tls-acme: 'true'
+            insecure: Redirect
+        
