@@ -13,9 +13,6 @@ environments:
         - "accn.wiche.edu":
             tls-acme: 'true'
             insecure: Redirect
-        - "www.accn.wiche.edu":
-            tls-acme: 'true'
-            insecure: Redirect
         - "adultcollegecompletion.com":
             tls-acme: 'true'
             insecure: Redirect
